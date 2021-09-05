@@ -81,7 +81,6 @@ module.exports = class Image {
    * @instance
    */
   attachFile = (file) => {
-    if (!fs.existsSync(file)) throw Error('No such file: ' + file);
     /**@private */
     this.file = file;
 
