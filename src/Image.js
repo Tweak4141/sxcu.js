@@ -17,12 +17,12 @@ module.exports = class Image {
    * @param {String} url The upload url of the image, defaults to https:/sxcu.net/upload/.
    * @param {String} token The upload token of the domain, only needed if the domain is private.
    */
-  constructor(url = 'https://sxcu.net/upload/', token) {
+  constructor(url, token, domain) {
     /**@private */
     this.url = url;
     /**@private */
     this.token = token;
-
+    this.domain = domain;
     /**@private */
     this.collection = new Collection();
     /**@private */
@@ -98,7 +98,8 @@ module.exports = class Image {
   upload = () =>
     new Promise(async (resolve, reject) => {
       let formdata = {
-        token: this.token,
+        Authorization: this.token,
+        Domain: this.domain,
         collection: this.collection.getId(),
         collection_token: this.collection.getToken(),
         noembed: this.noembed,
